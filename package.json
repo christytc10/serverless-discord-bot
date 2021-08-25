@@ -1,0 +1,15 @@
+{
+  "name": "serverless-discord-bot",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christytc10/serverless-discord-bot"
+  },
+  "author": "Christy Campbell",
+  "license": "MIT",
+  "dependencies": {
+    "discord-interactions": "^2.3.0",
+    "dotenv": "^10.0.0",
+    "raw-body": "^2.4.1"
+  }
+}

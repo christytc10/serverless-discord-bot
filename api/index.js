@@ -31,6 +31,24 @@ module.exports = async (request, response) => {
       response.send({
         type: InteractionResponseType.PONG,
       });
+    else if (message.type === InteractionType.APPLICATION_COMMAND) {
+      // Handle our Slash Commands
+      switch (message.data.name.toLowerCase()) {
+        case 'hello':
+          response.status(200).send({
+            type: 4,
+            data: {
+              content: "Hello!",
+            },
+          });
+          console.log("Hello Request");
+          break;
+        default:
+          console.error("Unknown Command");
+          response.status(400).send({ error: "Unknown Type" });
+          break;
+        }
+      }
     }
   }
 };

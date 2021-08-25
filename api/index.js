@@ -5,6 +5,10 @@ const {
 } = require('discord-interactions');
 const getRawBody = require('raw-body');
 
+const TEST_COMMAND = {
+  name: 'Test',
+  description: 'This is a test, try it!',
+};
 
 module.exports = async (request, response) => {
   if (request.method === 'POST') {
@@ -34,14 +38,14 @@ module.exports = async (request, response) => {
     else if (message.type === InteractionType.APPLICATION_COMMAND) {
       // Handle our Slash Commands
       switch (message.data.name.toLowerCase()) {
-        case 'hello':
+        case TEST_COMMAND.name.toLocaleLowerCase():
           response.status(200).send({
             type: 4,
             data: {
-              content: "Hello!",
+              content: "TEST!",
             },
           });
-          console.log("Hello Request");
+          console.log("Test Request");
           break;
         default:
           console.error("Unknown Command");

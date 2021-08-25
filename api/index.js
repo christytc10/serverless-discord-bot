@@ -5,11 +5,15 @@ const {
 } = require('discord-interactions');
 const getRawBody = require('raw-body');
 
-const TEST_COMMAND = {
-  name: 'Test',
-  description: 'This is a test, try it!',
+const DOTHETHING_COMMAND = {
+  name: 'DoTheThing',
+  description: 'Like this bot? Support me!',
 };
 
+/**
+ * @param {VercelRequest} request
+ * @param {VercelResponse} response
+ */
 module.exports = async (request, response) => {
   if (request.method === 'POST') {
     const signature = request.headers['x-signature-ed25519'];
@@ -36,23 +40,26 @@ module.exports = async (request, response) => {
         type: InteractionResponseType.PONG,
       });
     } else if (message.type === InteractionType.APPLICATION_COMMAND) {
-      // Handle our Slash Commands
       switch (message.data.name.toLowerCase()) {
-        case TEST_COMMAND.name.toLocaleLowerCase():
+        case DOTHETHING_COMMAND.name.toLowerCase():
           response.status(200).send({
             type: 4,
             data: {
-              content: "TEST!",
+              content:
+                "Thanks for using my bot!",
+              flags: 64,
             },
           });
-          console.log("Test Request");
+          console.log('Support request');
           break;
         default:
-          console.error("Unknown Command");
-          response.status(400).send({ error: "Unknown Type" });
+          console.error('Unknown Command');
+          response.status(400).send({ error: 'Unknown Type' });
           break;
-        }
       }
+    } else {
+      console.error('Unknown Type');
+      response.status(400).send({ error: 'Unknown Type' });
     }
   }
 };

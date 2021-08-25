@@ -5,18 +5,6 @@ const {
 } = require('discord-interactions');
 const getRawBody = require('raw-body');
 
-const SLAP_COMMAND = {
-  name: 'Slap',
-  description: 'Sometimes you gotta slap a person with a large trout',
-  options: [
-    {
-      name: 'user',
-      description: 'The user to slap',
-      type: 6,
-      required: true,
-    },
-  ],
-};
 
 module.exports = async (request, response) => {
   if (request.method === 'POST') {

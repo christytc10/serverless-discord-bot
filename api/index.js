@@ -35,7 +35,7 @@ module.exports = async (request, response) => {
       response.send({
         type: InteractionResponseType.PONG,
       });
-    else if (message.type === InteractionType.APPLICATION_COMMAND) {
+    } else if (message.type === InteractionType.APPLICATION_COMMAND) {
       // Handle our Slash Commands
       switch (message.data.name.toLowerCase()) {
         case TEST_COMMAND.name.toLocaleLowerCase():
